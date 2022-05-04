@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeapp-deployment
+  namespace: node
+spec:
+  selector:
+    matchLabels:
+      app: nodeapp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nodeapp
+    spec:
+      containers:
+      - name: nodeapp
+        image: 076592739138.dkr.ecr.ap-southeast-1.amazonaws.com/k8-static:number
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
